@@ -35,7 +35,7 @@ void init()
 {
 	// Vorwiderstand einschalten
 	FALLPORT  |= (1 << KUGEL);
-	//FALLPORT  |= (1 << PLATTE); //nur wenn testen mit knöpfen
+	//FALLPORT  |= (1 << PLATTE); //nur wenn testen mit knÃ¶pfen
 	
 }
 
@@ -45,7 +45,7 @@ void warteAufFall() {
 	
 	while((FALLPIN & (1 << KUGEL)) == 0);	// Warte bis kein Kontakt mit der Kugel
 	//lcd_clear();
-	//lcd_string("Zeit läuft");
+	//lcd_string("Zeit lÃ¤uft");
 	
 }
 
@@ -92,25 +92,24 @@ int main(void)
 	
     for(;;)
     {
-		timer = 0;
-		warteAufFall();
-		warteAufAufprall();
-		
-		float anz = berechneErdanziehung(timer);
-		
-		//float_to_string(anz);	// Erdanziehung
-		//float_to_string(timer);	// Fallzeit
-		
-		lcd_clear();
-		lcd_string(itoa(timer, str, 10));	// Int to ASCII
-		
-		//for(;;);
-		
-		_delay_ms(1000);
-		
-		lcd_clear();
-		
-		warteAufKugelKontakt();
+	timer = 0;
+	warteAufFall();
+	warteAufAufprall();
+
+	float anz = berechneErdanziehung(timer);
+
+	//float_to_string(anz);	// Erdanziehung
+	//float_to_string(timer);	// Fallzeit
+
+	lcd_clear();
+	lcd_string(itoa(timer, str, 10));	// Int to ASCII
+
+	//for(;;);
+
+	_delay_ms(1000);
+
+	lcd_clear();
+
+	warteAufKugelKontakt();
     }
 }
-
